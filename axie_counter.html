@@ -16,13 +16,24 @@
 		<h1 class="display-5">Enemy Current Energy</h1>
 		<h1 class="display-1 fw-bold" id="current_enemy_energy">3</h1>
 		<div class="col-lg-6 mx-auto ">
-		  <div class="d-grid gap-2 d-xl-flex justify-content-xl-center">
-			<button type="button" class="btn btn-danger btn-lg px-4" id="enemy_attack">Enemy Attack</button>
-			<button type="button" class="btn btn-danger btn-lg px-4" id="you_steal_energy">You Steal Energy</button>
-			<button type="button" class="btn btn-secondary btn-lg px-4"> 0 Cost Card</button>
-			<button type="button" class="btn btn-success btn-lg px-4" id="enemy_steal_energy">Enemy Steal Energy</button>
-			<button type="button" class="btn btn-success btn-lg px-4" id="gain_from_my_attack">Gain From My Attack</button>
-			<button type="button" class="btn btn-success btn-lg px-4" id="enemy_pass">Enemy Pass / Next Round</button>
+		  <div class="d-grid gap-2">
+			 <div class="row">
+				<div class="d-grid gap-1 col-4 mb-1">
+					<button type="button" class="btn btn-danger btn-lg mb-1" id="enemy_attack">Enemy Attack</button>
+					<button type="button" class="btn btn-danger btn-lg px-4" id="you_steal_energy">You Steal Energy</button>
+				</div>
+				<div class="d-grid gap-1 col-4 mb-1">
+					<button type="button" class="btn btn-success btn-lg px-4 mb-1" id="enemy_steal_energy">Enemy Steal Energy</button>
+					<button type="button" class="btn btn-success btn-lg px-4" id="gain_from_my_attack">Gain From My Attack</button>
+				</div>
+				<div class="d-grid gap-1 col-4 mb-1">
+				 <button type="button" class="btn btn-secondary btn-lg px-4 mb-1"> 0 Cost Card</button>
+				 <button type="button" class="btn btn-secondary btn-lg px-4 mb-1"> Enemy Gain Card</button>
+				</div>
+				<div class="d-grid gap-2 col-12">
+					<button type="button" class="btn btn-success btn-lg px-4" id="enemy_pass">Enemy Pass / Next Round</button>
+				</div>
+			 </div>
 		  </div>
 		</div>
 		<div class="col-lg-6 mx-auto mt-2">
