@@ -12,12 +12,11 @@
   </head>
   <body>
   <main>
-	  <div class="px-4 py-5 my-5 text-center">
+	  <div class="text-center">
 		<h1 class="display-5">Enemy Current Energy</h1>
 		<h1 class="display-1 fw-bold" id="current_enemy_energy">3</h1>
-		<div class="col-lg-6 mx-auto ">
-		  <div class="d-grid gap-2">
-			 <div class="row">
+		<div class="col-lg-6 mx-auto">
+			<div class="row">
 				<div class="card col-4 mb-1">
 				  <div class="card-body ">
 					<h5 class="card-title">Energy Used</h5>
@@ -30,14 +29,14 @@
 				<div class="card col-4 mb-1">
 				  <div class="card-body ">
 					<h5 class="card-title">Enegy Gain</h5>
-					<div class="d-grid gap-1 ">
+					<div class="d-grid gap-1">
 						<button type="button" class="btn btn-success btn-lg px-4 mb-1" id="enemy_steal_energy">Enemy Steal Energy</button>
 						<button type="button" class="btn btn-success btn-lg px-4" id="gain_from_my_attack">Gain From My Attack</button>
 					</div>
 				  </div>
 				</div>
 				<div class="card col-4 mb-1">
-				  <div class="card-body ">
+				  <div class="card-body">
 					<h5 class="card-title">Card</h5>
 					<div class="d-grid gap-1 ">
 						 <button type="button" class="btn btn-secondary btn-lg px-4 mb-1"> 0 Cost Card - Attack</button>
@@ -46,24 +45,42 @@
 					</div>
 				  </div>
 				</div>
-				
-				
-				
-
-				<div class="d-grid gap-2 col-12">
+				<div class="col-12 d-grid mb-1">
 					<button type="button" class="btn btn-success btn-lg px-4" id="enemy_pass">Enemy Pass / Next Round</button>
 				</div>
+				<div class="col-lg-12">
+					<button type="button" class="btn btn-success btn-lg px-4" id="plus">+</button>
+					<button type="button" class="btn btn-danger btn-lg px-4" id="minus">-</button>
+					<button type="button" class="btn btn-primary btn-lg px-4" id="reset">Reset</button>
+				</div>
+			</div>	
+		</div>
 		
-			 </div>
-		  </div>
-		</div>
-		<div class="col-lg-6 mx-auto mt-2">
-		  <div class="d-grid gap-2 d-xl-flex justify-content-xl-center">
-			<button type="button" class="btn btn-success btn-lg px-4" id="plus">+</button>
-			<button type="button" class="btn btn-danger btn-lg px-4" id="minus">-</button>
-			<button type="button" class="btn btn-primary btn-lg px-4" id="reset">Reset</button>
-		  </div>
-		</div>
+	  </div>
+	  <div class="col-lg-6 mx-auto text-center">
+			<div class="row">
+			<div class="col-4 mb-1">
+				<h1 class="display-5">Win</h1>
+				<h1 class="display-1 fw-bold" id="win_count">0</h1>
+			</div>
+			<div class="col-4 mb-1">
+				<h1 class="display-5">Total SLP</h1>
+				<h1 class="display-1 fw-bold" id="total_slp">0</h1>
+			</div>
+			 <div class="col-4">
+				<div class="d-grid gap-1 mb-1">
+					<select id="slp_win">
+						<option value="6">6</option>
+						<option value="9">9</option>
+						<option value="12">12</option>
+					</select>
+					<button type="button" class="btn btn-success btn-lg px-4" id="add_win">Add Win</button>
+				</div>
+				<div class="d-grid gap-1">
+					<button type="button" class="btn btn-primary btn-lg px-4" id="win_reset">Reset</button>
+				</div>
+			  </div>
+			</div>
 	  </div>
 	  <div class="b-example-divider mb-0"></div>
 	</main>
@@ -127,6 +144,29 @@
 				current_enemy_energy = current_enemy_energy - 1;
 				jQuery("#current_enemy_energy").html(current_enemy_energy);
 			}
+		}
+		
+		jQuery("#add_win").click(function(){
+			addWin();
+		});
+		jQuery("#win_reset").click(function(){
+			resetWin();
+		});
+		function addWin(){
+			var win_count = jQuery("#win_count").html() * 1;
+			var total_slp = jQuery("#total_slp").html() * 1;
+			var slp_win = jQuery("#slp_win").val() * 1;
+			
+			win_count = win_count + 1;
+			jQuery("#win_count").html(win_count);
+			
+			
+			total_slp = total_slp + slp_win;
+			jQuery("#total_slp").html(total_slp);
+		}
+		function resetWin(){
+			jQuery("#win_count").html("0");
+			jQuery("#total_slp").html("0");
 		}
 	  
 	</script>
