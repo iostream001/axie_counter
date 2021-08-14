@@ -75,6 +75,7 @@
 						<option value="12">12</option>
 					</select>
 					<button type="button" class="btn btn-success btn-lg px-4" id="add_win">Add Win</button>
+					<button type="button" class="btn btn-danger btn-lg px-4" id="undo_win">Undo Win</button>
 				</div>
 				<div class="d-grid gap-1">
 					<button type="button" class="btn btn-primary btn-lg px-4" id="win_reset">Reset</button>
@@ -149,6 +150,9 @@
 		jQuery("#add_win").click(function(){
 			addWin();
 		});
+		jQuery("#undo_win").click(function(){
+			undoWin();
+		});
 		jQuery("#win_reset").click(function(){
 			resetWin();
 		});
@@ -163,6 +167,24 @@
 			
 			total_slp = total_slp + slp_win;
 			jQuery("#total_slp").html(total_slp);
+		}
+		function undoWin(){
+			var win_count = jQuery("#win_count").html() * 1;
+			var total_slp = jQuery("#total_slp").html() * 1;
+			var slp_win = jQuery("#slp_win").val() * 1;
+			
+			win_count = win_count - 1;
+			if(win_count >= 0){
+				
+				jQuery("#win_count").html(win_count);
+			}	
+				
+			total_slp = total_slp - slp_win;
+			if(total_slp >= 0){
+				jQuery("#total_slp").html(total_slp);
+			} else if(total_slp < slp_win){
+				jQuery("#total_slp").html(0);
+			}
 		}
 		function resetWin(){
 			jQuery("#win_count").html("0");
