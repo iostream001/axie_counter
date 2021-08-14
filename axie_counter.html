@@ -59,15 +59,19 @@
 	  </div>
 	  <div class="col-lg-6 mx-auto text-center">
 			<div class="row">
-			<div class="col-4 mb-1">
+			<div class="col-3 mb-1">
 				<h1 class="display-5">Win</h1>
 				<h1 class="display-1 fw-bold" id="win_count">0</h1>
 			</div>
-			<div class="col-4 mb-1">
+			<div class="col-3 mb-1">
 				<h1 class="display-5">Total SLP</h1>
 				<h1 class="display-1 fw-bold" id="total_slp">0</h1>
 			</div>
-			 <div class="col-4">
+			<div class="col-3 mb-1">
+				<h1 class="display-5">Lost</h1>
+				<h1 class="display-1 fw-bold" id="total_lose">0</h1>
+			</div>
+			 <div class="col-3">
 				<div class="d-grid gap-1 mb-1">
 					<select id="slp_win">
 						<option value="6">6</option>
@@ -76,6 +80,7 @@
 					</select>
 					<button type="button" class="btn btn-success btn-lg px-4" id="add_win">Add Win</button>
 					<button type="button" class="btn btn-danger btn-lg px-4" id="undo_win">Undo Win</button>
+					<button type="button" class="btn btn-danger btn-lg px-4" id="add_lose">Add Lose</button>
 				</div>
 				<div class="d-grid gap-1">
 					<button type="button" class="btn btn-primary btn-lg px-4" id="win_reset">Reset</button>
@@ -156,6 +161,10 @@
 		jQuery("#win_reset").click(function(){
 			resetWin();
 		});
+		jQuery("#add_lose").click(function(){
+			addLose();
+		});
+		
 		function addWin(){
 			var win_count = jQuery("#win_count").html() * 1;
 			var total_slp = jQuery("#total_slp").html() * 1;
@@ -186,9 +195,15 @@
 				jQuery("#total_slp").html(0);
 			}
 		}
+		function addLose(){
+			var total_lose = jQuery("#total_lose").html() * 1;
+			total_lose = total_lose + 1;
+			jQuery("#total_lose").html(total_lose);
+		}
 		function resetWin(){
 			jQuery("#win_count").html("0");
 			jQuery("#total_slp").html("0");
+			jQuery("#total_lose").html("0");
 		}
 	  
 	</script>
