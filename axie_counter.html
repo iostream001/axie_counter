@@ -17,7 +17,7 @@
 		<h1 class="display-1 fw-bold" id="current_enemy_energy">3</h1>
 		<div class="col-lg-6 mx-auto">
 			<div class="row">
-				<div class="card col-4 mb-1">
+				<div class="card col-6 mb-1">
 				  <div class="card-body ">
 					<h5 class="card-title">Energy Used</h5>
 					<div class="d-grid gap-1 ">
@@ -26,7 +26,7 @@
 					</div>
 				  </div>
 				</div>
-				<div class="card col-4 mb-1">
+				<div class="card col-6 mb-1">
 				  <div class="card-body ">
 					<h5 class="card-title">Enegy Gain</h5>
 					<div class="d-grid gap-1">
@@ -35,7 +35,7 @@
 					</div>
 				  </div>
 				</div>
-				<div class="card col-4 mb-1">
+				<div class="card col-4 mb-1 d-none">
 				  <div class="card-body">
 					<h5 class="card-title">Card</h5>
 					<div class="d-grid gap-1 ">
@@ -57,29 +57,44 @@
 		</div>
 		
 	  </div>
-	  <div class="col-lg-6 mx-auto text-center">
+	  <div class="col-lg-6 mx-auto">
 			<div class="row">
-			<div class="col-3 mb-1">
+			<div id="battle_log" class="col-12 mb-1 fw-bold">
+			</div>
+			<div class="col-3 mb-1 text-center">
 				<h1 class="display-5">Win</h1>
 				<h1 class="display-1 fw-bold" id="win_count">0</h1>
 			</div>
-			<div class="col-3 mb-1">
+			<div class="col-3 mb-1 text-center">
 				<h1 class="display-5">Total SLP</h1>
 				<h1 class="display-1 fw-bold" id="total_slp">0</h1>
+				<h1 class="display-5 fw-bold" id="total_current_slp">0</h1>
 			</div>
-			<div class="col-3 mb-1">
+			<div class="col-3 mb-1 text-center">
 				<h1 class="display-5">Lost</h1>
 				<h1 class="display-1 fw-bold" id="total_lose">0</h1>
 			</div>
-			 <div class="col-3">
+			<div class="col-3">
 				<div class="d-grid gap-1 mb-1">
-					<select id="slp_win">
-						<option value="6">6</option>
-						<option value="9">9</option>
-						<option value="12">12</option>
-					</select>
+					<div class="form-floating">
+					  <input type="text" class="form-control" id="current_slp" placeholder="">
+					  <label for="current_slp">Your Current SLP</label>
+					</div>
+					<div class="form-floating">
+						<select class="form-control" id="slp_win">
+							<option value="1">1</option>
+							<option value="3">3</option>
+							<option value="6">6</option>
+							<option value="9">9</option>
+							<option value="12">12</option>
+							<option value="15">15</option>
+							<option value="18">18</option>
+							<option value="21">21</option>
+						</select>
+						<label for="slp_win">Set SLP Win</label>
+					</div>
 					<button type="button" class="btn btn-success btn-lg px-4" id="add_win">Add Win</button>
-					<button type="button" class="btn btn-danger btn-lg px-4" id="undo_win">Undo Win</button>
+					<!-- <button type="button" class="btn btn-danger btn-lg px-4" id="undo_win">Undo Win</button> -->
 					<button type="button" class="btn btn-danger btn-lg px-4" id="add_lose">Add Lose</button>
 				</div>
 				<div class="d-grid gap-1">
@@ -173,9 +188,12 @@
 			win_count = win_count + 1;
 			jQuery("#win_count").html(win_count);
 			
-			
 			total_slp = total_slp + slp_win;
 			jQuery("#total_slp").html(total_slp);
+			
+			updateTotalCurrentSlp();
+			
+			jQuery("#battle_log").append("<span class='text-success'>W<span>");
 		}
 		function undoWin(){
 			var win_count = jQuery("#win_count").html() * 1;
@@ -199,11 +217,27 @@
 			var total_lose = jQuery("#total_lose").html() * 1;
 			total_lose = total_lose + 1;
 			jQuery("#total_lose").html(total_lose);
+			
+			jQuery("#battle_log").append("<span class='text-danger'>L<span>");
 		}
 		function resetWin(){
 			jQuery("#win_count").html("0");
 			jQuery("#total_slp").html("0");
 			jQuery("#total_lose").html("0");
+			
+			jQuery("#battle_log").html("");
+		}
+		
+		jQuery("#current_slp").change(function(){
+			updateTotalCurrentSlp();
+		});
+		
+		function updateTotalCurrentSlp(){
+			var total_slp = jQuery("#total_slp").html()  * 1;
+			var current_slp = jQuery("#current_slp").val()  * 1;
+			
+			var total_current_slp = total_slp + current_slp;
+			jQuery("#total_current_slp").html(total_current_slp);
 		}
 	  
 	</script>
