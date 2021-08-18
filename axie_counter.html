@@ -9,6 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
     <title>Axie Counter!</title>
+	<style>
+		.battle_result {
+			display:inline;float:left;border:solid thin #ced4da;padding: 2px;text-align:center;
+		}
+	</style>
   </head>
   <body>
   <main>
@@ -94,6 +99,7 @@
 						<label for="slp_win">Set SLP Win</label>
 					</div>
 					<button type="button" class="btn btn-success btn-lg px-4" id="add_win">Add Win</button>
+					<button type="button" class="btn btn-secondary btn-lg px-4" id="add_draw">Add Draw</button>
 					<!-- <button type="button" class="btn btn-danger btn-lg px-4" id="undo_win">Undo Win</button> -->
 					<button type="button" class="btn btn-danger btn-lg px-4" id="add_lose">Add Lose</button>
 				</div>
@@ -170,6 +176,9 @@
 		jQuery("#add_win").click(function(){
 			addWin();
 		});
+		jQuery("#add_draw").click(function(){
+			addDraw();
+		});
 		jQuery("#undo_win").click(function(){
 			undoWin();
 		});
@@ -193,7 +202,22 @@
 			
 			updateTotalCurrentSlp();
 			
-			jQuery("#battle_log").append("<span class='text-success'>W<span>");
+			jQuery("#battle_log").append("<div class='battle_result'><span class='text-success'>W</span><br><span>"+ slp_win +"<span></div>");
+		}
+		function addDraw(){
+			var win_count = jQuery("#win_count").html() * 1;
+			var total_slp = jQuery("#total_slp").html() * 1;
+			var slp_win = jQuery("#slp_win").val() * 1;
+			
+			win_count = win_count + 1;
+			jQuery("#win_count").html(win_count);
+			
+			total_slp = total_slp + slp_win;
+			jQuery("#total_slp").html(total_slp);
+			
+			updateTotalCurrentSlp();
+			
+			jQuery("#battle_log").append("<div class='battle_result'><span class='text-secondary'>D</span><br><span>"+ slp_win +"<span></div>");
 		}
 		function undoWin(){
 			var win_count = jQuery("#win_count").html() * 1;
@@ -218,12 +242,14 @@
 			total_lose = total_lose + 1;
 			jQuery("#total_lose").html(total_lose);
 			
-			jQuery("#battle_log").append("<span class='text-danger'>L<span>");
+			jQuery("#battle_log").append("<div class='battle_result'><span class='text-danger'>L</span><br><span>0<span></div>");
 		}
+		
 		function resetWin(){
 			jQuery("#win_count").html("0");
 			jQuery("#total_slp").html("0");
 			jQuery("#total_lose").html("0");
+			jQuery("#total_current_slp").html("0");
 			
 			jQuery("#battle_log").html("");
 		}
